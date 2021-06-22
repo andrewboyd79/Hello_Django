@@ -7,5 +7,33 @@
 </head>
 <body>
     <h1>Things I still need to do</h1>
+    
+    
+    <table>
+        {% for item in items%}
+        <tr>
+            {% if item.done %}
+            <td><strike>{{item.name}}</strike></td>
+            {% else %}
+            <td>{{item.name}}</td>
+            {% endif %}
+            <td>
+                <a href="/edit/{{ item.id }}">
+                <button>Edit</button>
+                </a>
+                <a href="/toggle/{{ item.id }}">
+                <button>Toggle</button>
+                </a>
+                <a href="/delete/{{ item.id }}">
+                <button>Delete</button>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td>You have nothing to do</td></tr>
+        {% endfor %}
+    </table>
+    <a href="/add">Add an item</a>
+    
 </body>
 </html>
